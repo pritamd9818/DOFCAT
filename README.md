@@ -552,9 +552,3 @@ GitHub repository.
 
 
 Developed for CME preprocessing and kinematic analysis using METIS and ASPIICS observations.
-
-
-
-```
-
-```
