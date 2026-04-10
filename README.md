@@ -537,7 +537,7 @@ Example:
 
 ```text
 
-Das, P. et al. 2026, CME Kinematics with Optical Flow: Multi-Coronagraph Insights into Internal Velocity Dispersion
+CME Kinematics with Optical Flow: Multi-Coronagraph Insights into Internal Velocity Dispersion, 2026
 
 GitHub repository.
 
