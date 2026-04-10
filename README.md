@@ -546,23 +546,11 @@ Example:
 
 ```text
 
-Das, P. et al. DOFCAT: Dense Optical Flow CME Analysis Tool.
+Das, P. et al. 2026, CME Kinematics with Optical Flow: Multi-Coronagraph Insights into Internal Velocity Dispersion
 
 GitHub repository.
 
 ```
-
-
-
----
-
-
-
-## License
-
-
-
-A license should be included before public release. For broad scientific reuse, a permissive license such as MIT is a practical choice.
 
 
 
