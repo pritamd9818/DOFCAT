@@ -2,17 +2,17 @@
 
 
 
-* Reads FITS files and headers from a user-defined input directory
+* Reads FITS files and headers from a user-defined input directory.
 
-* Creates running-difference images using frame `i+2 - i`
+* Applies instrument-specific masking.
 
-* Applies instrument-specific masking
+* Uses header-based image dimensions for defining the Optical Flow ROI.
 
-* Uses header-based image dimensions, not hardcoded detector sizes
+* Applies temporal GTF filtering for ASPIICS to mitigate brightness flickering.
 
-* Applies temporal GTF filtering for ASPIICS
-
-* Rotates ASPIICS images to solar-north-up using SunPy
+* Rotates ASPIICS images to solar-north-up using SunPy (in `DOFCAT_preprocessing_ASPIICS.py`). Not added here deliberately for METIS (`DOFCAT_preprocessing_METIS.py`), so users can see the difference. The correct approach would be to add the roll correction to METIS as well.
+  
+* Creates running-difference images using frame `i+2 - i`, and preprocessing.
 
 * Computes dense optical flow for METIS difference images using Farneback’s method
 
