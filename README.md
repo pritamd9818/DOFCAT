@@ -39,7 +39,7 @@ Install the required Python packages:
 
 ```bash
 
-pip install numpy matplotlib astropy opencv-python sunpy scipy
+pip install numpy matplotlib astropy opencv-python sunpy[all] scipy
 
 ```
 
