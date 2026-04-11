@@ -281,6 +281,17 @@ def plot_velocity_vectors_on_original_frames(frames, magnitudes,
         plt.imshow(frame_rgb)
         plt.axis('off')
 
+        # Add colorbar
+        sm = plt.cm.ScalarMappable(norm=norm, cmap=colormap)
+        cbar = plt.colorbar(sm, ax=plt.gca(), orientation= 'horizontal', fraction=0.04,aspect=18, pad=0.00001)
+        cbar.set_label('Velocity Magnitude (km/s)', fontsize=10)
+
+        ticks = np.linspace(np.min(magnitude), np.max(magnitude), num=5)
+        cbar.set_ticks(ticks)
+        cbar.set_ticklabels([f"{tick:.2f}" for tick in ticks])
+        cbar.ax.tick_params(labelsize=8)
+        plt.subplots_adjust(right=1.2)  # <--- Add this line
+
         plt.savefig(os.path.join(output_dir, "frames_with_vectors",
                                  f"frame_{i:04d}.png"),
                     bbox_inches='tight', pad_inches=0)
