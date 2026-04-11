@@ -22,6 +22,7 @@ from astropy.time import Time
 import matplotlib.pyplot as plt
 from matplotlib.patches import Circle
 from matplotlib import colormaps
+import sunpy.visualization.colormaps as cm
 from sunpy.map import Map
 import pickle
 
