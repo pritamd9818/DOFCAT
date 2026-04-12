@@ -286,6 +286,15 @@ def plot_all_proba_diff_images(diff_imgs, header_all, save_dir):
     vmin = np.min(all_vals) * np.exp(-21.2)
     vmax = np.max(all_vals) * np.exp(-17.8)
 
+    """
+    Or, simply use:
+    
+    vmin = -6.397e-13
+    vmax = 1.074e-10
+
+    This value provided good results. But it can be tailored according to the use case.
+    """
+
     for i, (img, header) in enumerate(zip(diff_imgs, header_all)):
 
         # Extract timestamp
