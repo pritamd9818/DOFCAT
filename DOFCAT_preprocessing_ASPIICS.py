@@ -22,7 +22,6 @@ from astropy.time import Time
 import matplotlib.pyplot as plt
 from matplotlib.patches import Circle
 from matplotlib import colormaps
-import sunpy.visualization.colormaps as cm
 from sunpy.map import Map
 import pickle
 
@@ -266,17 +265,6 @@ def plot_all_proba_diff_images(diff_imgs, header_all, save_dir):
     cmap = colormaps.get_cmap('kcor').copy()
     cmap.set_bad(color='black')
 
-    # Use image size from header instead of hardcoding
-    ref_header = header_all[0]
-    naxis1 = int(ref_header['NAXIS1'])
-    naxis2 = int(ref_header['NAXIS2'])
-
-    dpi = 100
-    padding = 200
-    image_size = max(naxis1, naxis2)
-
-    figsize = ((image_size + padding)/dpi, (image_size + padding)/dpi)
-
     # Global scaling across all frames (keeps contrast consistent)
     all_vals = np.concatenate([
         img[np.isfinite(img)]
@@ -295,6 +283,20 @@ def plot_all_proba_diff_images(diff_imgs, header_all, save_dir):
     This value provided good results. But it can be tailored according to the use case.
     """
 
+    # Use image size from header instead of hardcoding
+    ref_header = header_all[0]
+    naxis1 = int(ref_header['NAXIS1'])
+    naxis2 = int(ref_header['NAXIS2'])
+
+    dpi = 100
+    padding = 200
+
+    # Keep square layout for consistent output
+    image_size = max(naxis1, naxis2)
+    total_size = image_size + padding
+    figsize = (total_size / dpi, total_size / dpi)
+
+    
     for i, (img, header) in enumerate(zip(diff_imgs, header_all)):
 
         # Extract timestamp
@@ -309,7 +311,12 @@ def plot_all_proba_diff_images(diff_imgs, header_all, save_dir):
                   orgn[1]/rsun_arc, ep[1]/rsun_arc]
 
         fig = plt.figure(figsize=figsize, dpi=dpi)
-        ax = fig.add_axes([0.1, 0.1, 0.8, 0.8])
+
+        left = padding / 2 / total_size
+        bottom = padding / 2 / total_size
+        size = image_size / total_size
+
+        ax = fig.add_axes((left, bottom, size, size))
 
         # Plot image
         ax.imshow(img, cmap=cmap, vmin=vmin, vmax=vmax,
@@ -318,7 +325,10 @@ def plot_all_proba_diff_images(diff_imgs, header_all, save_dir):
         # Overlay solar disk
         add_solar_disk_circle(ax, header)
 
-        ax.set_title(f'PROBA3 WB Frame {i:04d}\n{time_str}')
+        ax.set_title(f'PROBA3 WB Frame {i:04d}\n{time_str}', fontsize=32, pad=10)
+        ax.set_xlabel(r'Solar X [R$_\odot$]', fontsize=32, labelpad=5)
+        ax.set_ylabel(r'Solar Y [R$_\odot$]', fontsize=32, labelpad=-15)
+        ax.tick_params(labelsize=30)
 
         plt.savefig(f"{save_dir}/difference_images/difference_image_{i:04d}.png")
         plt.close()
