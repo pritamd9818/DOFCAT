@@ -145,6 +145,14 @@ def plot_all_metis_diff_images(diff_imgs, header_all, orgn, ep, aspect_ratio, sa
     # Use global scaling across frames
     vmin = np.min([np.nanmin(img) * np.exp(-11.0) for img in diff_imgs])
     vmax = np.max([np.nanmax(img) * np.exp(-6.0) for img in diff_imgs])
+    '''
+    Or, simply use:
+    
+    vmin = -1.936907808319677e-12
+    vmax = 2.9202553655386404e-10
+
+    This value provided good results. But it can be tailored according to the use case.
+    '''
 
     # Get image size from header
     ref_header = header_all[0]
