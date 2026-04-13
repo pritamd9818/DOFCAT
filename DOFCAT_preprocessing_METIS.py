@@ -183,7 +183,7 @@ def plot_all_metis_diff_images(diff_imgs, header_all, orgn, ep, aspect_ratio, sa
         bottom = padding / 2 / total_size
         size = image_size / total_size
 
-        ax = fig.add_axes([left, bottom, size, size])
+        ax = fig.add_axes((left, bottom, size, size))
 
         # Convert extent into solar radii
         rsun_arcsec = float(header['RSUN_ARC'])
@@ -202,10 +202,10 @@ def plot_all_metis_diff_images(diff_imgs, header_all, orgn, ep, aspect_ratio, sa
         # Overlay solar disk
         add_solar_disk_circle(ax, header)
 
-        ax.set_title(f'METIS TB Frame {i:04d}\n{time_str}', fontsize=16, pad=20)
-        ax.set_xlabel(r'Solar X [R$_\odot$]', fontsize=14)
-        ax.set_ylabel(r'Solar Y [R$_\odot$]', fontsize=14)
-        ax.tick_params(labelsize=12)
+        ax.set_title(f'METIS TB Frame {i:04d}\n{time_str}', fontsize=24, pad=20)
+        ax.set_xlabel(r'Solar X [R$_\odot$]', fontsize=22)
+        ax.set_ylabel(r'Solar Y [R$_\odot$]', fontsize=22)
+        ax.tick_params(labelsize=20)
 
         plt.savefig(
             f"{save_dir}/difference_images/difference_image_{i:04d}.png",
