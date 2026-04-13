@@ -203,11 +203,26 @@ def plot_velocity_heatmap_with_quiver(magnitude, u, v, output_dir, headers,
     x_extent_arcsec = (np.array([0, magnitude.shape[1] - 1]) - center_x) * cdelt
     y_extent_arcsec = (np.array([0, magnitude.shape[0] - 1]) - center_y) * cdelt
 
+    # Create tick labels that include 0
+    num_ticks = 8
+
+    def generate_ticks(min_val, max_val, num, include_zero=True):
+        ticks = np.linspace(min_val, max_val, num)
+        if include_zero and not np.any(np.isclose(ticks, 0)):
+            ticks = np.append(ticks, 0)
+            ticks = np.sort(ticks)
+        return ticks
+
     rsun_arcsec = headers[0]['RSUN_ARC']
 
-    x_rs = x_extent_arcsec / rsun_arcsec
-    y_rs = y_extent_arcsec / rsun_arcsec
+    x_rs_ticks = generate_ticks(x_extent_arcsec[0], x_extent_arcsec[1], num_ticks) / rsun_arcsec
+    y_rs_ticks = generate_ticks(y_extent_arcsec[0], y_extent_arcsec[1], num_ticks) / rsun_arcsec
 
+    x_pixel_ticks = (x_rs_ticks * rsun_arcsec / cdelt) + center_x
+    y_pixel_ticks = (y_rs_ticks * rsun_arcsec / cdelt) + center_y
+
+    plt.xticks(x_pixel_ticks, labels=np.round(x_rs_ticks, 2))
+    plt.yticks(y_pixel_ticks, labels=np.round(y_rs_ticks, 2))
     plt.xlabel('Solar X ($R_\\odot$)')
     plt.ylabel('Solar Y ($R_\\odot$)')
 
@@ -333,7 +348,7 @@ def main():
     magnitudes, u_list, v_list = compute_optical_flow_and_magnitude(
         denoised_frames, headers,
         x_value, y_value, width, height,
-        lower_velocity=50, upper_velocity=3000
+        lower_velocity=50, upper_velocity=1500
     )
 
     # Plot heatmaps
