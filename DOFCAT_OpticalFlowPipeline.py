@@ -321,7 +321,13 @@ def main():
 
     frames_folder = "/full/path/to/difference_images"
     output_dir = "/full/path/to/output"
+    # --------------------------------------------------------
+    # Plotting switches
+    # --------------------------------------------------------
+    plot_heatmaps = True
+    plot_vectors = True
 
+    # Loading preprocessed difference images
     noisy_frames = load_frames_from_folder(frames_folder)
 
     # Apply denoising to each frame
@@ -351,23 +357,54 @@ def main():
         lower_velocity=50, upper_velocity=1500
     )
 
-    # Plot heatmaps
-    for i, (magnitude, u, v) in enumerate(zip(magnitudes, u_list, v_list)):
-        date_time_str = extract_datetime_from_header(headers[i])
+    # --------------------------------------------------------
+    # Save velocity data (magnitudes, u, v, times)
+    # --------------------------------------------------------
 
-        plot_velocity_heatmap_with_quiver(
-            magnitude, u, v, output_dir, headers,
-            step=15, frame_number=i, date_time_str=date_time_str
-        )
+    os.makedirs(os.path.join(output_dir, "velocity_data"), exist_ok=True)
 
-    # Overlay vectors
-    plot_velocity_vectors_on_original_frames(
-        noisy_frames, magnitudes, u_list, v_list,
-        output_dir, step=15,
-        x_value=x_value, y_value=y_value
+    # Convert list → array for compact storage
+    magnitudes_array = np.array(magnitudes, dtype=np.float32)
+    u_array = np.array(u_list, dtype=np.float32)
+    v_array = np.array(v_list, dtype=np.float32)
+
+    # Extract timestamps (one per velocity frame)
+    times = [extract_datetime_from_header(h) for h in headers[:-1]]
+
+    # Save everything in one compressed file
+    np.savez_compressed(
+        os.path.join(output_dir, "velocity_data", "velocity_data.npz"),
+        magnitudes=magnitudes_array,
+        u=u_array,
+        v=v_array,
+        times=times
     )
 
-    return magnitudes
+
+    # --------------------------------------------------------
+    # Plot heatmaps (optional)
+    # --------------------------------------------------------
+    if plot_heatmaps:
+        for i, (magnitude, u, v) in enumerate(zip(magnitudes, u_list, v_list)):
+
+            date_time_str = extract_datetime_from_header(headers[i])
+
+            plot_velocity_heatmap_with_quiver(
+                magnitude, u, v, output_dir, headers,
+                step=15, frame_number=i, date_time_str=date_time_str
+            )
+            
+    # --------------------------------------------------------
+    # Plot vector overlays (optional)
+    # --------------------------------------------------------
+    if plot_vectors:
+        plot_velocity_vectors_on_original_frames(
+            noisy_frames, magnitudes, u_list, v_list,
+            output_dir, step=15,
+            x_value=x_value, y_value=y_value
+        )
+
+        return magnitudes
 
 
 if __name__ == "__main__":
