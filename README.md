@@ -1,6 +1,8 @@
 # DOFCAT: Dense Optical Flow CME Analysis Tool
 A pipeline for CME detection and kinematic analysis using running-difference imaging and dense optical flow technique on coronagraph data (METIS onboard Solar Orbiter and ASPIICS onboard PROBA-3).
 
+<img width="1600" height="1600" alt="dofcat_logo" src="https://github.com/user-attachments/assets/25674072-b990-45e0-9f59-01ecfdf33c30" />
+
 ## Main features
 
 
