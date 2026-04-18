@@ -322,4 +322,4 @@ Enable/disable plotting. Disabling plotting makes the code much faster and more 
 
 ---
 
-## While DOFCAT was designed for CME kinematics using coronagraph data, it can be adapted to analyse large-scale motions in other areas of solar physics.
+## While DOFCAT was designed for CME kinematics using coronagraph data, it can be adapted to analyse large-scale motions in other areas of solar physics as well.
