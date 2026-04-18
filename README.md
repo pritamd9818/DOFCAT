@@ -31,7 +31,7 @@ A pipeline for CME detection and kinematic analysis using running-difference ima
 
 
 ---
-For a detailed description of all tweakable parameters, see [Parameter Information](Parameter_information.md).
+### For a detailed description of all tweakable parameters, see [Parameter Information](Parameter_information.md).
 
 ---
 ## Requirements
