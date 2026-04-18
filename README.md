@@ -22,11 +22,11 @@ A pipeline for CME detection and kinematic analysis using running-difference ima
  
 * Uses header-based image dimensions and padding-aware cropping for defining the Optical Flow ROI.
 
-* Computes dense optical flow for difference images using Farneback’s method
+* Computes dense optical flow for difference images using Farneback’s method.
 
-* Converts pixel motion to physical velocity in km/s
+* Converts pixel motion to physical velocity in km/s.
 
-* Saves figures, headers, and compressed NumPy arrays in a clean output structure
+* Saves figures, headers, and compressed NumPy arrays in a clean output structure.
 
 
 
