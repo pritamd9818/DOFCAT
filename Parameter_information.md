@@ -13,6 +13,12 @@ Defined in preprocessing scripts.
 ```python
 vmin = np.min([np.nanmin(img) * np.exp(-11.0) for img in diff_imgs])
 vmax = np.max([np.nanmax(img) * np.exp(-6.0) for img in diff_imgs])
+
+Or, simply use:
+    
+    vmin = -1.936907808319677e-12
+    vmax = 2.9202553655386404e-10
+
 ```
 
 #### ASPIICS
@@ -20,6 +26,12 @@ vmax = np.max([np.nanmax(img) * np.exp(-6.0) for img in diff_imgs])
 ```python
 vmin = np.min(all_vals) * np.exp(-21.2)
 vmax = np.max(all_vals) * np.exp(-17.8)
+
+Or, simply use:
+    
+    vmin = -6.397e-13
+    vmax = 1.074e-10
+
 ```
 
 **Purpose:**
