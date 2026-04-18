@@ -62,7 +62,7 @@ pip install numpy matplotlib astropy opencv-python sunpy[all] scipy
 
 
 
-This script processes METIS Total Brightness FITS files and creates running-difference images.
+This script processes METIS Total Brightness FITS files and creates pre-processed running-difference images.
 
 
 
@@ -82,7 +82,7 @@ This script processes METIS Total Brightness FITS files and creates running-diff
 
 6. Computes plotting extent from WCS keywords.
 
-7. Saves PNG images with consistent scaling.
+7. Saves PNG images with consistent brightness scaling. It is an important step, detailed below.
 
 8. Saves the aligned headers and compressed difference images.
 
@@ -119,7 +119,6 @@ save_dir/
 #### Notes
 
 
-
 * The figure size is derived from `NAXIS1` and `NAXIS2` in the FITS header.
 
 * The output directory is user-defined.
@@ -134,29 +133,27 @@ save_dir/
 
 
 
-This script processes PROBA-3 / ASPIICS Wideband Level 2 FITS files and creates filtered, rotated running-difference images.
+This script processes PROBA-3/ASPIICS Wideband Level 2 FITS files and creates pre-processed & rotated running-difference images.
 
 
 
 #### What it does
-
+Similar to the METIS script, but with the GTF filter applied and roll angle corrected.
 
 
 1. Loads all FITS files from the input folder.
 
-2. Computes running differences using `I(i+2) - I(i)`.
+2. Stacks the difference images into a time cube.
 
-3. Stacks the difference images into a time cube.
+3. Applies a temporal Gaussian Tapered Fourier (GTF) filter for each pixel to reduce brightness flickering.
 
-4. Applies a temporal Gaussian Tapered Fourier (GTF) filter to reduce flickering.
+4. Computes running differences using `I(i+2) - I(i)`.
 
-5. Rotates each frame to solar north up using SunPy.
+5. Applies an annular coronal mask and a solar-disk overlay.
 
-6. Applies an annular coronal mask.
+6. Rotates each frame to solar north up using SunPy.
 
-7. Plots the processed images with a solar-disk overlay.
-
-8. Saves the final PNGs, headers, and compressed NumPy arrays.
+7. Saves PNG images with consistent brightness scaling. It is an important step, detailed below.
 
 
 
