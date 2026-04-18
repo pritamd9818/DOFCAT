@@ -346,7 +346,6 @@ Example:
 
 CME Kinematics with Optical Flow: Multi-Coronagraph Insights into Internal Velocity Dispersion, 2026
 
-GitHub repository.
 
 ```
 
