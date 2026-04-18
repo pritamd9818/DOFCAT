@@ -14,13 +14,13 @@ A pipeline for CME detection and kinematic analysis using running-difference ima
 
 * Applies instrument-specific masking.
 
-* Uses header-based image dimensions and padding-aware cropping for defining the Optical Flow ROI.
-
 * Applies temporal GTF filtering for ASPIICS to mitigate brightness flickering.
 
-* Rotates ASPIICS images to solar-north-up using SunPy (in `DOFCAT_preprocessing_ASPIICS.py`). Not added here deliberately for METIS (`DOFCAT_preprocessing_METIS.py`), so users can see the difference. The correct approach would be to apply roll correction to METIS data as well.
-  
-* Creates running-difference images using frame `i+2 - i`, and preprocessing.
+* Creates running-difference (RD) images using frame `i+2 - i`, and preprocessing.
+
+* Rotates ASPIICS RD images to solar-north-up using SunPy (in `DOFCAT_preprocessing_ASPIICS.py`). Not added here deliberately for METIS (`DOFCAT_preprocessing_METIS.py`), so users can see the difference. The correct approach would be to apply roll correction to METIS data as well.
+ 
+* Uses header-based image dimensions and padding-aware cropping for defining the Optical Flow ROI.
 
 * Computes dense optical flow for difference images using Farneback’s method
 
