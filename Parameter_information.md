@@ -54,40 +54,40 @@ All pixel values are scaled within `[vmin, vmax]`.
 
 * Decreasing `vmin` (more negative):
 
-  * Expands dynamic range toward faint structures
-  * Enhances weak CME features (e.g., diffuse fronts, faint flows)
-  * May suppress contrast in brighter regions
+  * Expands dynamic range toward faint structures.
+  * Enhances weak CME features (e.g., diffuse fronts, faint flows).
+  * May suppress contrast in brighter regions.
 
 * Increasing `vmin` (less negative):
 
-  * Clips faint background variations
-  * Improves visibility of strong structures
-  * May completely hide weak features
+  * Clips faint background variations.
+  * Improves visibility of strong structures.
+  * May completely hide weak features.
 
 ##### Changing `vmax` (upper limit)
 
 * Decreasing `vmax`:
 
-  * Prevents bright regions (e.g., CME core) from saturating
-  * Enhances contrast within bright structures
-  * May suppress very high-intensity features
+  * Prevents bright regions (e.g., CME core) from saturating.
+  * Enhances contrast within bright structures.
+  * May suppress very high-intensity features.
 
 * Increasing `vmax`:
 
-  * Preserves full intensity range
-  * But compresses contrast → features appear washed out
+  * Preserves full intensity range.
+  * But compresses contrast → features appear washed out.
 
 #### **Best Practice**
 
-* First adjust `vmin` → reveal faint CME structures
-* Then adjust `vmax` → prevent saturation of bright regions
+* First adjust `vmin` → reveal faint CME structures.
+* Then adjust `vmax` → prevent saturation of bright regions.
 
 
 #### **Important Notes**
 
-* This directly affects **visual interpretation of CME morphology**
+* This directly affects **visual interpretation of CME morphology**.
 * Should be tuned per event for best visibility and to improve the contrast of the desired feature.
-* Fixed values improve consistency across frames; dynamic scaling adapts to individual events
+* Fixed values improve consistency across frames; dynamic scaling adapts to individual events.
 
 
 ---
@@ -133,8 +133,8 @@ Removes small-scale noise while preserving CME edges.
 
 **Important:**
 
-* Strongly affects optical flow stability
-* Over-smoothing reduces velocity gradients
+* Strongly affects optical flow stability.
+* Over-smoothing reduces velocity gradients.
 
 ---
 
@@ -156,8 +156,8 @@ Removes padded regions (labels, ticks, margins) from analysis.
 
 **Effect:**
 
-* Larger ROI → captures more CME structure, increases computation
-* Smaller ROI → faster but may miss important features
+* Larger ROI → captures more CME structure, increases computation.
+* Smaller ROI → faster but may miss important features.
 
 ---
 
@@ -236,17 +236,17 @@ Each pixel is treated as a time series and filtered independently.
 
 ##### `f_cut_ratio = 0.15`
 
-* Defines cutoff frequency as a fraction of the Nyquist frequency
-* Controls how much high-frequency variation is removed
+* Defines cutoff frequency as a fraction of the Nyquist frequency.
+* Controls how much high-frequency variation is removed.
 
 **Effect:**
 
-* Lower value → stronger smoothing, removes flickering but may suppress real rapid evolution
-* Higher value → preserves temporal detail but retains noise
+* Lower value → stronger smoothing, removes flickering but may suppress real rapid evolution.
+* Higher value → preserves temporal detail but retains noise.
 
 ##### `sigma_ratio`
 
-* Controls the width of the Gaussian taper in frequency space
+* Controls the width of the Gaussian taper in frequency space.
 * If `None`, it defaults to `f_cut_ratio`
 
 **Effect:**
@@ -256,16 +256,16 @@ Each pixel is treated as a time series and filtered independently.
 
 ##### `window_type = "hann"`
 
-* Applies a window function before FFT to reduce edge discontinuities
+* Applies a window function before FFT to reduce edge discontinuities.
 
 **Effect:**
 
-* Prevents artificial ringing in the filtered signal
-* Improves stability of FFT-based filtering
+* Prevents artificial ringing in the filtered signal.
+* Improves stability of FFT-based filtering.
 
 ##### `chunk_size = 128`
 
-* Processes data in chunks along the spatial dimension
+* Processes data in chunks along the spatial dimension.
 
 **Effect:**
 
@@ -278,14 +278,14 @@ Each pixel is treated as a time series and filtered independently.
 
 **Effect:**
 
-* If estimated FFT size exceeds this → switches to safer (slower) method
-* Prevents memory crashes for large datasets
+* If estimated FFT size exceeds this → switches to safer (slower) method.
+* Prevents memory crashes for large datasets.
 
 #### **Important Notes**
 
 * Over-filtering can suppress **real CME dynamics** and introduce ringing artifacts.
-* Under-filtering leaves **flickering artifacts**, which degrade optical flow accuracy
-* This step is **critical for ASPIICS data quality before optical flow**
+* Under-filtering leaves **flickering artifacts**, which degrade optical flow accuracy.
+* This step is **critical for ASPIICS data quality before optical flow**.
 ---
 
 
