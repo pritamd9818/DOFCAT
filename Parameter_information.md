@@ -110,6 +110,8 @@ Running difference is useful for enhancing moving features. For more details, re
 
 ### 3. Bilateral Filtering (Noise Reduction) - Optical Flow
 
+This step is essential because optical flow is highly sensitive to noise and small intensity fluctuations.
+
 Defined in the optical flow script.
 ```python
 cv2.bilateralFilter(img, 35, 60, 60)
