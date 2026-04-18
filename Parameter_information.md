@@ -22,7 +22,6 @@ vmin = -1.936907808319677e-12
 vmax = 2.9202553655386404e-10
 ```
 
----
 
 #### ASPIICS
 
@@ -38,7 +37,6 @@ vmin = -6.397e-13
 vmax = 1.074e-10
 ```
 
----
 
 #### **Purpose**
 
@@ -49,7 +47,6 @@ These parameters define the intensity range mapped to the colormap:
 
 All pixel values are scaled within `[vmin, vmax]`.
 
----
 
 #### **Effect of tuning**
 
@@ -67,8 +64,6 @@ All pixel values are scaled within `[vmin, vmax]`.
   * Improves visibility of strong structures
   * May completely hide weak features
 
----
-
 ##### Changing `vmax` (upper limit)
 
 * Decreasing `vmax`:
@@ -82,14 +77,11 @@ All pixel values are scaled within `[vmin, vmax]`.
   * Preserves full intensity range
   * But compresses contrast → features appear washed out
 
----
-
 #### **Best Practice**
 
 * First adjust `vmin` → reveal faint CME structures
 * Then adjust `vmax` → prevent saturation of bright regions
 
----
 
 #### **Important Notes**
 
@@ -231,15 +223,12 @@ temporal_fft_filter(
 )
 ```
 
----
-
 #### **Purpose**
 
 Removes temporal brightness flickering in ASPIICS running-difference images by applying a **Gaussian-tapered filter in the frequency domain**.
 
 Each pixel is treated as a time series and filtered independently.
 
----
 
 #### **Parameter Details**
 
@@ -253,8 +242,6 @@ Each pixel is treated as a time series and filtered independently.
 * Lower value → stronger smoothing, removes flickering but may suppress real rapid evolution
 * Higher value → preserves temporal detail but retains noise
 
----
-
 ##### `sigma_ratio`
 
 * Controls the width of the Gaussian taper in frequency space
@@ -265,8 +252,6 @@ Each pixel is treated as a time series and filtered independently.
 * Smaller → sharper cutoff (aggressive filtering)
 * Larger → smoother transition
 
----
-
 ##### `window_type = "hann"`
 
 * Applies a window function before FFT to reduce edge discontinuities
@@ -275,8 +260,6 @@ Each pixel is treated as a time series and filtered independently.
 
 * Prevents artificial ringing in the filtered signal
 * Improves stability of FFT-based filtering
-
----
 
 ##### `chunk_size = 128`
 
@@ -287,8 +270,6 @@ Each pixel is treated as a time series and filtered independently.
 * Smaller chunks → lower memory usage, slower
 * Larger chunks → faster, but higher memory requirement
 
----
-
 ##### `max_fft_bytes_safe`
 
 * Memory threshold to decide FFT strategy
@@ -297,8 +278,6 @@ Each pixel is treated as a time series and filtered independently.
 
 * If estimated FFT size exceeds this → switches to safer (slower) method
 * Prevents memory crashes for large datasets
-
----
 
 #### **Important Notes**
 
@@ -341,4 +320,4 @@ Enable/disable plotting. Disabling plotting makes the code much faster and more 
 
 ---
 
-# While DOFCAT was designed for CME kinematics using coronagraphs, it can be modified to analyse any large-scale motions in the domain of solar physics.
+## While DOFCAT was designed for CME kinematics using coronagraphs, it can be modified to analyse any large-scale motions in the domain of solar physics.
