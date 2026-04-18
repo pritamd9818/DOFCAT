@@ -4,7 +4,7 @@ The DOFCAT pipeline includes several parameters that influence preprocessing, vi
 
 ---
 
-### 1. Brightness Scaling (vmin / vmax) — Most Important
+### 1. Brightness Scaling (vmin / vmax) — Preprocessing
 
 Defined in preprocessing scripts.
 
@@ -13,12 +13,12 @@ Defined in preprocessing scripts.
 ```python
 vmin = np.min([np.nanmin(img) * np.exp(-11.0) for img in diff_imgs])
 vmax = np.max([np.nanmax(img) * np.exp(-6.0) for img in diff_imgs])
+```
+Or, put:
 
-Or, simply use:
-    
-    vmin = -1.936907808319677e-12
-    vmax = 2.9202553655386404e-10
-
+```text  
+vmin = -1.936907808319677e-12
+vmax = 2.9202553655386404e-10
 ```
 
 #### ASPIICS
@@ -27,11 +27,11 @@ Or, simply use:
 vmin = np.min(all_vals) * np.exp(-21.2)
 vmax = np.max(all_vals) * np.exp(-17.8)
 
-Or, simply use:
-    
-    vmin = -6.397e-13
-    vmax = 1.074e-10
-
+```
+Or, put:
+```text
+vmin = -6.397e-13
+vmax = 1.074e-10
 ```
 
 **Purpose:**
@@ -45,28 +45,29 @@ Controls contrast of running-difference images.
 **Important:**
 
 * This directly affects **visual interpretation of CME morphology**
-* Should be tuned per event for best visibility
+* Should be tuned per event for best visibility and to improve the contrast of the desired feature.
 
 ---
 
-### 2. Running Difference Interval
+### 2. Running Difference Interval - Preprocessing
 
 ```python
 diff = img[i+2] - img[i]
 ```
 
 **Purpose:**
-Defines temporal baseline for motion detection.
+Running difference is useful for enhancing moving features. For more details, refer to our paper.
 
 **Effect:**
 
-* Larger interval → enhances large-scale motion, increases signal
-* Smaller interval → captures finer temporal evolution
+* Larger interval → enhances large-scale motion, but may introduce motion blur and feature broadening.
+* Smaller interval → captures finer temporal evolution but may introduce dark artifact at the trailing edge of a moving feature.
 
 ---
 
-### 3. Bilateral Filtering (Noise Reduction)
+### 3. Bilateral Filtering (Noise Reduction) - Optical Flow
 
+Defined in the optical flow script.
 ```python
 cv2.bilateralFilter(img, 35, 60, 60)
 ```
@@ -92,7 +93,7 @@ Removes small-scale noise while preserving CME edges.
 
 ---
 
-### 4. ROI (Region of Interest)
+### 4. ROI (Region of Interest) - Optical Flow
 
 ```python
 padding = 200
@@ -115,7 +116,7 @@ Removes padded regions (labels, ticks, margins) from analysis.
 
 ---
 
-### 5. Farneback Optical Flow Parameters
+### 5. Farneback Optical Flow Parameters - Optical Flow
 
 ```python
 cv2.calcOpticalFlowFarneback(
@@ -143,7 +144,7 @@ Controls how motion is estimated between frames.
 
 ---
 
-### 6. Velocity Thresholding
+### 6. Velocity Thresholding - Optical Flow
 
 ```python
 lower_velocity = 50
@@ -156,30 +157,17 @@ Removes noise and unphysical velocities.
 **Effect:**
 
 * Lower threshold → removes slow background motion
-* Upper threshold → removes spurious high-speed artifacts
+* Upper threshold → removes sudden instrument artifact motion.
 
 **Important:**
 
 * Strongly influences final velocity maps
-* Should be tuned based on CME speed
+* Should be tuned based on feature speed
 
 ---
 
-### 7. Velocity Conversion Parameters
 
-Derived from FITS headers:
-
-```python
-cdelt = headers[0]['CDELT1']
-dsun_obs = headers[0]['DSUN_OBS']
-```
-
-**Purpose:**
-Convert pixel displacement → physical velocity (km/s)
-
----
-
-### 8. Temporal GTF Filter (ASPIICS)
+### 7. Temporal GTF Filter (ASPIICS) - ASPIICS Preprocessing
 
 ```python
 temporal_fft_filter(
@@ -205,61 +193,20 @@ Removes brightness flickering in ASPIICS data.
 
 ---
 
-### 9. Masking Parameters
 
-#### METIS
-
-* Uses: `INN_FOV`, `OUT_FOV`, `SUNPIX`, `IOPIX`
-
-#### ASPIICS
-
-```python
-rin_rsun = 1.6
-```
-
-**Purpose:**
-Removes occulter and unwanted regions.
-
----
-
-### 10. Quiver Plot Density
-
-```python
-step = 15
-```
-
-**Purpose:**
-Controls arrow spacing.
-
-* Smaller → dense arrows (cluttered)
-* Larger → cleaner visualization
-
----
-
-### 11. Arrow Scaling
+### 8. Arrow Scaling
 
 ```python
 arrow_scale = 4
 ```
 
 **Purpose:**
-Controls vector length in overlay plots.
+Controls vector length in overlay plots. For a good cadence dataset, the motion between two frames can be very minute, because of which the vector arrows might be too small to be visually resolvable. Hence, increasing the arrow scale multiplies the vector arrow length for visual clarity.
 
 ---
 
-### 12. Plotting and Layout
 
-```python
-dpi = 100
-padding = 200
-```
-
-**Purpose:**
-Ensures consistent figure size and layout.
-
----
-
-### 13. Output Control
+### 9. Output Control
 
 ```python
 plot_heatmaps = True
@@ -267,15 +214,17 @@ plot_vectors = True
 ```
 
 **Purpose:**
-Enable/disable plotting.
+Enable/disable plotting. Disabling plotting makes the code much faster and more computationally efficient. However, plotting is recommended to confirm whether the code is detecting the desired motion.
 
 ---
 
 ## Notes
 
-* Brightness scaling (`vmin`, `vmax`) is the most sensitive visualization parameter.
+* Brightness scaling (`vmin`, `vmax`) is the most crucial visualization parameter.
 * Optical flow parameters control the physical accuracy of velocity estimation.
 * Preprocessing (filtering + masking) strongly affects final results.
-* Parameters may need tuning for different CME events.
+* Parameters may need tuning for different use cases.
 
 ---
+
+# While DOFCAT was designed for CME kinematics using coronagraphs, it can be modified to analyse any large-scale motions in the domain of solar physics.
