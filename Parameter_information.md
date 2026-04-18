@@ -296,7 +296,7 @@ arrow_scale = 4
 ```
 
 **Purpose:**
-Controls vector length in overlay plots. For a good cadence dataset, the motion between two frames can be very minute, because of which the vector arrows might be too small to be visually resolvable. Hence, increasing the arrow scale multiplies the vector arrow length for visual clarity.
+Controls vector length in overlay plots. For high-cadence datasets, the displacement between frames can be very small, because of which the vector arrows might be too small to be visually resolvable. Hence, increasing the arrow scale multiplies the vector arrow length for visual clarity.
 
 ---
 
