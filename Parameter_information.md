@@ -107,111 +107,7 @@ Running difference is useful for enhancing moving features. For more details, re
 
 ---
 
-### 3. Bilateral Filtering (Noise Reduction) - Optical Flow
-
-This step is essential because optical flow is highly sensitive to noise and small intensity fluctuations.
-
-Defined in the optical flow script.
-```python
-cv2.bilateralFilter(img, 35, 60, 60)
-```
-
-**Parameters:**
-
-* `d = 35` → neighborhood diameter
-* `sigmaColor = 60` → intensity similarity
-* `sigmaSpace = 60` → spatial smoothing
-
-**Purpose:**
-Removes small-scale noise while preserving CME edges.
-
-**Effect of tuning:**
-
-* Larger values → stronger smoothing, may blur fine structures
-* Smaller values → retains details but leaves noise
-
-**Important:**
-
-* Strongly affects optical flow stability.
-* Over-smoothing reduces velocity gradients.
-
----
-
-### 4. ROI (Region of Interest) - Optical Flow
-
-```python
-padding = 200
-pad = padding // 2
-
-x_value = pad
-y_value = pad
-
-width = full_width - 2 * pad
-height = full_height - 2 * pad
-```
-
-**Purpose:**
-Removes padded regions (labels, ticks, margins) from analysis.
-
-**Effect:**
-
-* Larger ROI → captures more CME structure, increases computation.
-* Smaller ROI → faster but may miss important features.
-
----
-
-### 5. Farneback Optical Flow Parameters - Optical Flow
-
-```python
-cv2.calcOpticalFlowFarneback(
-    prev_frame, next_frame, None,
-    0.3, 4, 15, 4, 5, 1.1, 0
-)
-```
-
-**Parameters:**
-
-* `pyr_scale = 0.3` → pyramid scaling (smaller = finer motion sensitivity)
-* `levels = 4` → number of pyramid levels (higher = better large-scale capture)
-* `winsize = 15` → averaging window (larger = smoother, smaller = detailed)
-* `iterations = 4` → iterations per level (higher = more accurate, slower)
-* `poly_n = 5` → pixel neighborhood size
-* `poly_sigma = 1.1` → smoothing for polynomial expansion
-
-**Purpose:**
-Controls how motion is estimated between frames.
-
-**Important:**
-
-* Directly affects velocity accuracy
-* Should be modified cautiously
-
----
-
-### 6. Velocity Thresholding - Optical Flow
-
-```python
-lower_velocity = 50
-upper_velocity = 1500
-```
-
-**Purpose:**
-Removes noise and unphysical velocities.
-
-**Effect:**
-
-* Lower threshold → removes detection of noise-induced motion
-* Upper threshold → removes detection of sudden instrument artifact-induced motion.
-
-**Important:**
-
-* Strongly influences final velocity maps
-* Should be tuned based on feature speed
-
----
-
-
-### 7. Temporal GTF Filter (ASPIICS) — Preprocessing
+### 3. Temporal GTF Filter (ASPIICS) — Preprocessing
 
 ```python
 temporal_fft_filter(
@@ -285,6 +181,109 @@ Each pixel is treated as a time series and filtered independently.
 * Over-filtering can suppress **real CME dynamics** and introduce ringing artifacts.
 * Under-filtering leaves **flickering artifacts**, which degrade optical flow accuracy.
 * This step is **critical for ASPIICS data quality before optical flow**.
+---
+
+### 4. Bilateral Filtering (Noise Reduction) - Optical Flow
+
+This step is essential because optical flow is highly sensitive to noise and small intensity fluctuations.
+
+Defined in the optical flow script.
+```python
+cv2.bilateralFilter(img, 35, 60, 60)
+```
+
+**Parameters:**
+
+* `d = 35` → neighborhood diameter
+* `sigmaColor = 60` → intensity similarity
+* `sigmaSpace = 60` → spatial smoothing
+
+**Purpose:**
+Removes small-scale noise while preserving CME edges.
+
+**Effect of tuning:**
+
+* Larger values → stronger smoothing, may blur fine structures
+* Smaller values → retains details but leaves noise
+
+**Important:**
+
+* Strongly affects optical flow stability.
+* Over-smoothing reduces velocity gradients.
+
+---
+
+### 5. ROI (Region of Interest) - Optical Flow
+
+```python
+padding = 200
+pad = padding // 2
+
+x_value = pad
+y_value = pad
+
+width = full_width - 2 * pad
+height = full_height - 2 * pad
+```
+
+**Purpose:**
+Removes padded regions (labels, ticks, margins) from analysis.
+
+**Effect:**
+
+* Larger ROI → captures more CME structure, increases computation.
+* Smaller ROI → faster but may miss important features.
+
+---
+
+### 6. Farneback Optical Flow Parameters - Optical Flow
+
+```python
+cv2.calcOpticalFlowFarneback(
+    prev_frame, next_frame, None,
+    0.3, 4, 15, 4, 5, 1.1, 0
+)
+```
+
+**Parameters:**
+
+* `pyr_scale = 0.3` → pyramid scaling (smaller = finer motion sensitivity)
+* `levels = 4` → number of pyramid levels (higher = better large-scale capture)
+* `winsize = 15` → averaging window (larger = smoother, smaller = detailed)
+* `iterations = 4` → iterations per level (higher = more accurate, slower)
+* `poly_n = 5` → pixel neighborhood size
+* `poly_sigma = 1.1` → smoothing for polynomial expansion
+
+**Purpose:**
+Controls how motion is estimated between frames.
+
+**Important:**
+
+* Directly affects velocity accuracy
+* Should be modified cautiously
+
+---
+
+### 7. Velocity Thresholding - Optical Flow
+
+```python
+lower_velocity = 50
+upper_velocity = 1500
+```
+
+**Purpose:**
+Removes noise and unphysical velocities.
+
+**Effect:**
+
+* Lower threshold → removes detection of noise-induced motion
+* Upper threshold → removes detection of sudden instrument artifact-induced motion.
+
+**Important:**
+
+* Strongly influences final velocity maps
+* Should be tuned based on feature speed
+
 ---
 
 
