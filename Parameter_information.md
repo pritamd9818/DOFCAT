@@ -4,8 +4,7 @@ The DOFCAT pipeline includes several parameters that influence preprocessing, vi
 
 ---
 
-### 1. Brightness Scaling (`vmin`, `vmax`) — Preprocessing (Critical)
-
+### 1. Brightness Scaling (`vmin`, `vmax`) — Preprocessing
 Defined in preprocessing scripts for visualization of running-difference images.
 
 #### METIS
