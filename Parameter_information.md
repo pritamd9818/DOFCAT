@@ -201,8 +201,8 @@ Removes noise and unphysical velocities.
 
 **Effect:**
 
-* Lower threshold → removes slow background motion
-* Upper threshold → removes sudden instrument artifact motion.
+* Lower threshold → removes detection of noise-induced motion
+* Upper threshold → removes detection of sudden instrument artifact-induced motion.
 
 **Important:**
 
@@ -212,7 +212,7 @@ Removes noise and unphysical velocities.
 ---
 
 
-### 7. Temporal GTF Filter (ASPIICS)
+### 7. Temporal GTF Filter (ASPIICS) — Preprocessing
 
 ```python
 temporal_fft_filter(
@@ -289,7 +289,7 @@ Each pixel is treated as a time series and filtered independently.
 ---
 
 
-### 8. Arrow Scaling
+### 8. Arrow Scaling - Optical Flow
 
 ```python
 arrow_scale = 4
@@ -301,7 +301,7 @@ Controls vector length in overlay plots. For high-cadence datasets, the displace
 ---
 
 
-### 9. Output Control
+### 9. Output Control - Optical Flow
 
 ```python
 plot_heatmaps = True
