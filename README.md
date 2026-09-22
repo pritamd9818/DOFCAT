@@ -338,13 +338,13 @@ Edit the input and output paths inside the script before running.
 
 
 
-### METIS optical flow
+### Optical flow maps
 
 
 
 ```bash
 
-python DOFCAT_OpticalFlowPipeline_METIS.py
+python DOFCAT_OpticalFlowPipeline.py
 
 ```
 
