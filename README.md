@@ -388,3 +388,4 @@ CME Kinematics with Optical Flow: Multi-Coronagraph Insights into Internal Veloc
 
 
 Developed for CME preprocessing and kinematic analysis using METIS and ASPIICS observations.
+If you require its LASCO C2 counterpart, please feel free to contact me at: pritamd9818@gmail.com
