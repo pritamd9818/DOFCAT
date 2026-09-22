@@ -206,7 +206,7 @@ save_dir/
 
 
 
-### 3. `DOFCAT_OpticalFlowPipeline_METIS.py`
+### 3. `DOFCAT_OpticalFlowPipeline.py`
 
 
 
