@@ -372,9 +372,9 @@ Example:
 
 ```text
 
-Das, P., Pant, V., and Rathore, N. “CME Kinematics with Optical Flow: Multi-Coronagraph In-
-sights into Internal Velocity Dispersion”. In: arXiv e-prints (2026). arXiv: 2609.25904 [astro-ph.SR].
-url: https://arxiv.org/abs/2609.25904.
+Das, P., Pant, V., and Rathore, N. “CME Kinematics with Optical Flow: Multi-Coronagraph
+Insights into Internal Velocity Dispersion”. In: arXiv e-prints, arXiv:2609.25904 (Sept. 2026),
+arXiv:2609.25904. arXiv: 2609.25904 [astro-ph.SR]
 
 
 ```
