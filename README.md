@@ -374,4 +374,12 @@ If you use **DOFCAT** in your research, please cite the associated paper:
 
 
 Developed for CME preprocessing and kinematic analysis using METIS and ASPIICS observations.
-If you require its LASCO C2 counterpart, please feel free to contact me at: pritamd9818@gmail.com
+If you require its LASCO C2 counterpart, it has also been newly added here: [DOFCAT for LASCO C2](DOFCAT_LASCOc2.ipynb)
+---
+
+## Contact
+For any queries, please do not hesitate to reach me at: pritamd9818@gmail.com
+
+or, pritam@aries.res.in
+
+[[Google Scholar]([https://arxiv.org/abs/2609.25904](https://scholar.google.com/citations?user=PV2YlvAAAAAJ&hl=en))]  
