@@ -382,4 +382,5 @@ For any queries, please do not hesitate to reach me at: pritamd9818@gmail.com
 
 or, pritam@aries.res.in
 
-[[Google Scholar]([https://arxiv.org/abs/2609.25904](https://scholar.google.com/citations?user=PV2YlvAAAAAJ&hl=en))]  
+
+[🎓 Google Scholar](https://scholar.google.com/citations?user=PV2YlvAAAAAJ&hl=en)
