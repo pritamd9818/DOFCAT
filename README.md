@@ -360,25 +360,9 @@ Edit the difference-image folder and output directory inside the script before r
 
 ## Citation
 
+If you use **DOFCAT** in your research, please cite the associated paper:
 
-
-If you use DOFCAT in a publication, please cite the repository and the associated paper or preprint once available.
-
-
-
-Example:
-
-
-
-```text
-
-Das, P., Pant, V., and Rathore, N. “CME Kinematics with Optical Flow: Multi-Coronagraph
-Insights into Internal Velocity Dispersion”. In: arXiv e-prints, arXiv:2609.25904 (Sept. 2026),
-arXiv:2609.25904. arXiv: 2609.25904 [astro-ph.SR]
-
-
-```
-
+- Das, P., Pant, V., & Rathore, N. (2026). *CME Kinematics with Optical Flow: Multi-Coronagraph Insights into Internal Velocity Dispersion*. arXiv e-prints, arXiv:2609.25904. [[arXiv](https://arxiv.org/abs/2609.25904)] [[ADS](https://ui.adsabs.harvard.edu/abs/2026arXiv260925904D)]
 
 
 ---
