@@ -363,7 +363,7 @@ Edit the difference-image folder and output directory inside the script before r
 If you use **DOFCAT** in your research, please cite the associated paper:
 
 - Das, P., Pant, V., & Rathore, N. (2026). *CME Kinematics with Optical Flow: Multicoronagraph Insights into Internal Velocity Dispersion*. In: ApJ 1011.1, 50 (Nov. 2026), p. 17. doi: 10.3847/
-1538-4357/aeab8f [[DOI](https://iopscience.iop.org/article/10.3847/1538-4357/aeab8f)]
+1538-4357/aeab8f [[ApJ Paper Link](https://iopscience.iop.org/article/10.3847/1538-4357/aeab8f)]
 
 
 ---
