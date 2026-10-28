@@ -362,7 +362,8 @@ Edit the difference-image folder and output directory inside the script before r
 
 If you use **DOFCAT** in your research, please cite the associated paper:
 
-- Das, P., Pant, V., & Rathore, N. (2026). *CME Kinematics with Optical Flow: Multi-Coronagraph Insights into Internal Velocity Dispersion*. arXiv e-prints, arXiv:2609.25904. [[arXiv](https://arxiv.org/abs/2609.25904)] [[ADS](https://ui.adsabs.harvard.edu/abs/2026arXiv260925904D)]
+- Das, P., Pant, V., & Rathore, N. (2026). *CME Kinematics with Optical Flow: Multicoronagraph Insights into Internal Velocity Dispersion*. In: ApJ 1011.1, 50 (Nov. 2026), p. 17. doi: 10.3847/
+1538-4357/aeab8f [[DOI](https://iopscience.iop.org/article/10.3847/1538-4357/aeab8f)]
 
 
 ---
